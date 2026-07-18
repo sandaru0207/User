@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       },
       theme: ThemeData(
           textSelectionTheme: const TextSelectionThemeData(
-        selectionHandleColor: Color.fromRGBO(60, 121, 98, 1.0),
+        selectionHandleColor: Color.fromRGBO(28, 235, 156, 1),
       )),
       title: "Canteen App",
       debugShowCheckedModeBanner: false,

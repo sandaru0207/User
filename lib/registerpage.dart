@@ -20,7 +20,7 @@ class _RegisterpageState extends State<Registerpage> {
   TextEditingController addresstextcontroller = TextEditingController();
 
   String? selectedOption;
-  List<String> options = ["FAS", "BS", "TECH"];
+  List<String> options = ["IT", "ACCOUNT", "ENGLISH"];
 
   @override
   Widget build(BuildContext context) {
@@ -99,7 +99,7 @@ class _RegisterpageState extends State<Registerpage> {
                   borderRadius: BorderRadius.circular(30.0),
                 ),
                 child: TextField(
-                  maxLength: 10,
+                  maxLength: 18,
                   controller: mobiletextcontroller,
                   style: TextStyle(
                       fontWeight: FontWeight.w800,
@@ -109,7 +109,7 @@ class _RegisterpageState extends State<Registerpage> {
                   cursorColor: const Color.fromRGBO(60, 121, 98, 1.0),
                   decoration: const InputDecoration(
                     counterText: '',
-                    hintText: "Mobile Number",
+                    hintText: "Student ID",
                     hintStyle: TextStyle(
                         color: Color.fromRGBO(60, 121, 98, 1.0),
                         fontWeight: FontWeight.bold),
