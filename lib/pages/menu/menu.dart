@@ -50,7 +50,8 @@ class _menupageState extends State<menupage> {
     return body.map<Menu>(Menu.fromJson).toList();
   }
 
-  late String mobile_number;
+  late String student_id;
+  String mobile_number = "";
 
   @override
   void initState() {
@@ -58,7 +59,7 @@ class _menupageState extends State<menupage> {
     super.initState();
     Map<String, dynamic> jwtDecodedToken = JwtDecoder.decode(widget.token);
 
-    mobile_number = jwtDecodedToken['mobile_number'];
+    student_id = jwtDecodedToken['student_id'];
     getmenu();
   }
 
@@ -66,7 +67,7 @@ class _menupageState extends State<menupage> {
   Widget build(BuildContext context) {
     void getprofiledetails(size) async {
       var regbody = {
-        "mobile_number": mobile_number,
+        "student_id": student_id,
       };
 
       var response = await http.post(Uri.parse(getprodetails),
@@ -76,16 +77,19 @@ class _menupageState extends State<menupage> {
       var jsonResponse = jsonDecode(response.body);
       print(jsonResponse);
 
-      proname = jsonResponse['name'];
-      profac = jsonResponse['faculty'];
-      proaddress = jsonResponse['address'];
+      setState(() {
+        proname = jsonResponse['name'];
+        profac = jsonResponse['faculty'];
+        proaddress = jsonResponse['address'];
+        mobile_number = jsonResponse['mobile_number'] ?? "";
+      });
 
       profileshowdialog(size);
     }
 
     void placeorder(int total) async {
       var regbody = {
-        "mobile_number": mobile_number,
+        "student_id": student_id,
         "total": total,
         "veg_count": food_item.veg_count,
         "veg_price": food_item.veg_price,
@@ -161,7 +165,7 @@ String title = "$date Menu";
                       ],
                     ),
                     Text(
-                      'Hi $mobile_number',
+                      'Hi $student_id',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: size.width * 0.05,
@@ -184,7 +188,7 @@ String title = "$date Menu";
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => orderpage(
-                                              mobilenumber: mobile_number,
+                                              studentId: student_id,
                                             )));
                               },
                             ),
@@ -393,7 +397,7 @@ String title = "$date Menu";
                   color: const Color.fromRGBO(60, 121, 98, 1.0)),
             ),
             content: Container(
-              height: 100,
+              height: 120,
               child: Column(
                 children: [
                   Row(
@@ -420,7 +424,27 @@ String title = "$date Menu";
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text(
-                        "Number:",
+                        "Student ID:",
+                        style: TextStyle(
+                            fontSize: size.width * 0.035,
+                            color: const Color.fromRGBO(60, 121, 98, 1.0)),
+                      ),
+                      SizedBox(
+                        width: size.width * 0.01,
+                      ),
+                      Text(
+                        student_id,
+                        style: TextStyle(
+                            fontSize: size.width * 0.035,
+                            color: const Color.fromRGBO(60, 121, 98, 1.0)),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        "Mobile:",
                         style: TextStyle(
                             fontSize: size.width * 0.035,
                             color: const Color.fromRGBO(60, 121, 98, 1.0)),

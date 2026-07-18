@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class orderpage extends StatefulWidget {
-  final String mobilenumber;
-  const orderpage({super.key, required this.mobilenumber});
+  final String studentId;
+  const orderpage({super.key, required this.studentId});
 
   @override
   State<orderpage> createState() => _orderpageState();
@@ -17,9 +17,9 @@ class orderpage extends StatefulWidget {
 class _orderpageState extends State<orderpage> {
   late Future<List<Order>> orders;
 
-  static Future<List<Order>> getorderlist(mobilenumber) async {
+  static Future<List<Order>> getorderlist(studentId) async {
     var regbody = {
-      "mobile_number": mobilenumber,
+      "student_id": studentId,
     };
     var response = await http.post(Uri.parse(getuserorders),
         headers: {"content-Type": "application/json"},
@@ -34,7 +34,7 @@ class _orderpageState extends State<orderpage> {
     //TODO: implement initState
     super.initState();
 
-    orders = getorderlist(widget.mobilenumber);
+    orders = getorderlist(widget.studentId);
   }
 
   @override

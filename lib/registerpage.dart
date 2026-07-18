@@ -14,6 +14,7 @@ class Registerpage extends StatefulWidget {
 
 //
 class _RegisterpageState extends State<Registerpage> {
+  TextEditingController studentIdController = TextEditingController();
   TextEditingController mobiletextcontroller = TextEditingController();
   TextEditingController nametextcontroller = TextEditingController();
   TextEditingController passwordtextcontroller = TextEditingController();
@@ -25,11 +26,13 @@ class _RegisterpageState extends State<Registerpage> {
   @override
   Widget build(BuildContext context) {
     void registeruser() async {
-      if (mobiletextcontroller.text.isNotEmpty &&
+      if (studentIdController.text.isNotEmpty &&
+          mobiletextcontroller.text.isNotEmpty &&
           nametextcontroller.text.isNotEmpty &&
           passwordtextcontroller.text.isNotEmpty &&
           addresstextcontroller.text.isNotEmpty) {
         var regbody = {
+          "student_id": studentIdController.text,
           "mobile_number": mobiletextcontroller.text,
           "name": nametextcontroller.text,
           "faculty": selectedOption,
@@ -100,7 +103,7 @@ class _RegisterpageState extends State<Registerpage> {
                 ),
                 child: TextField(
                   maxLength: 18,
-                  controller: mobiletextcontroller,
+                  controller: studentIdController,
                   style: TextStyle(
                       fontWeight: FontWeight.w800,
                       color: const Color.fromRGBO(60, 121, 98, 1.0),
@@ -139,6 +142,36 @@ class _RegisterpageState extends State<Registerpage> {
                   decoration: const InputDecoration(
                     counterText: '',
                     hintText: "Name",
+                    hintStyle: TextStyle(
+                        color: Color.fromRGBO(60, 121, 98, 1.0),
+                        fontWeight: FontWeight.bold),
+                    border: InputBorder.none,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: size.height * 0.01,
+              ),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                width: size.width * 0.8,
+                decoration: BoxDecoration(
+                  color: const Color.fromRGBO(119, 187, 162, 1.0),
+                  borderRadius: BorderRadius.circular(30.0),
+                ),
+                child: TextField(
+                  maxLength: 10,
+                  controller: mobiletextcontroller,
+                  keyboardType: TextInputType.phone,
+                  style: TextStyle(
+                      fontWeight: FontWeight.w800,
+                      color: const Color.fromRGBO(60, 121, 98, 1.0),
+                      fontSize: size.height * 0.02),
+                  textAlign: TextAlign.center,
+                  cursorColor: const Color.fromRGBO(60, 121, 98, 1.0),
+                  decoration: const InputDecoration(
+                    counterText: '',
+                    hintText: "Mobile Number",
                     hintStyle: TextStyle(
                         color: Color.fromRGBO(60, 121, 98, 1.0),
                         fontWeight: FontWeight.bold),

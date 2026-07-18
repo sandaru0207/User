@@ -14,7 +14,7 @@ class login extends StatefulWidget {
 }
 
 class _loginState extends State<login> {
-  TextEditingController mobiletextcontroller = TextEditingController();
+  TextEditingController studentIdController = TextEditingController();
   TextEditingController passwordtextcontroller = TextEditingController();
 
   late SharedPreferences prefs;
@@ -32,10 +32,10 @@ class _loginState extends State<login> {
   @override
   Widget build(BuildContext context) {
     void login() async {
-      if (mobiletextcontroller.text.isNotEmpty &&
+      if (studentIdController.text.isNotEmpty &&
           passwordtextcontroller.text.isNotEmpty) {
         var reqbody = {
-          "mobile_number": mobiletextcontroller.text,
+          "student_id": studentIdController.text,
           "password": passwordtextcontroller.text
         };
 
@@ -100,7 +100,7 @@ class _loginState extends State<login> {
                           ),
                           child: TextField(
                             maxLength: 18,
-                            controller: mobiletextcontroller,
+                            controller: studentIdController,
                             style: TextStyle(
                                 fontWeight: FontWeight.w800,
                                 color: const Color.fromRGBO(60, 121, 98, 1.0),
