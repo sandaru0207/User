@@ -32,19 +32,19 @@ class Order {
   });
 
   static Order fromJson(json) => Order(
-        total: json['total'],
-        veg_count: json['veg_count'],
-        veg_price: json['veg_price'],
-        egg_count: json['egg_count'],
-        egg_price: json['egg_price'],
-        chicken_count: json['chicken_count'],
-        chicken_price: json['chicken_price'],
-        rice_count: json['rice_count'],
-        rice_price: json['rice_price'],
-        kottu_count: json['kottu_count'],
-        kottu_price: json['kottu_price'],
-        fish_count: json['fish_count'],
-        fish_price: json['fish_price'],
-        orderid: json['_id'],
+        total: json['total'] ?? 0,
+        veg_count: json['veg_count'] ?? 0,
+        veg_price: json['veg_price'] ?? 0,
+        egg_count: json['egg_count'] ?? 0,
+        egg_price: json['egg_price'] ?? 0,
+        chicken_count: json['chicken_count'] ?? 0,
+        chicken_price: json['chicken_price'] ?? 0,
+        rice_count: json['rice_count'] ?? 0,
+        rice_price: json['rice_price'] ?? 0,
+        kottu_count: json['kottu_count'] ?? 0,
+        kottu_price: json['kottu_price'] ?? 0,
+        fish_count: json['fish_count'] ?? 0,
+        fish_price: json['fish_price'] ?? 0,
+        orderid: json['_id'] ?? '',
       );
 }
